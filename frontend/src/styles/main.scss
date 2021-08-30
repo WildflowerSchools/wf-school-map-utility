@@ -1,0 +1,31 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+
+$wf-teal:      #00a69c !default;
+$wf-dark-teal: #137070 !default;
+
+@import "frontend/src/styles/map";
+
+.hide {
+    display: none !important;
+}
+
+.color-wf-teal {
+    color: $wf-teal;
+}
+
+.center-horizontal {
+    margin: auto !important;
+    text-align: center;
+}
+
+#overlord {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.empty-line {
+    margin-top: 12px;
+    display: block;
+}

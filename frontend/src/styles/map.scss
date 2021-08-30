@@ -1,0 +1,37 @@
+@import "node_modules/mapbox-gl/dist/mapbox-gl";
+
+.map-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mapboxgl-control-container {
+  display: none;
+}
+
+.mapboxgl-marker {
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.marker-popup {
+  z-index: 5000;
+  .mapboxgl-popup-tip {
+    border-top-color: $wf-teal;
+  }
+  .mapboxgl-popup-content {
+    border: 1px solid $wf-teal;
+    padding: 0;
+    .mapboxgl-popup-close-button {
+      color: white;
+    }
+  }
+}
+
+.popup-school-logo {
+  max-width: 100px;
+}
