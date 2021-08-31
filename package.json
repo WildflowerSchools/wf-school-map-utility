@@ -1,10 +1,11 @@
 {
-  "name": "wf-school-map-widget",
+  "name": "wf-school-map-utility",
   "version": "0.0.1",
   "description": "google map JS widget for Wildflower Schools",
   "private": false,
   "main": "dist/wf-school-map-utility.js",
-  "homepage": ".",
+  "homepage": "https://github.com/WildflowerSchools/wf-school-map-utility",
+  "files": ["dist/*.js", "dist/**/&.js"],
   "dependencies": {
     "axios": "^0.21.1",
     "axios-hooks": "^2.6.3",
@@ -54,13 +55,13 @@
     "client": "npm run clean && webpack serve --mode development",
     "server": "nodemon backend/bin/www",
     "build": "npm run clean && webpack --mode production",
-    "clean": "rm -rf build/*",
+    "clean": "rm -rf dist/*",
     "test": "echo 'tsk tsk... you should be testing'",
     "fmt": "prettier --no-semi --write 'frontend/src/**/*.js' --write 'backend/*.js'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WildflowerSchools/wf-school-map-widget.git"
+    "url": "git+https://github.com/WildflowerSchools/wf-school-map-utility.git"
   },
   "author": "Benjamin Jaffe-Talberg",
   "license": "MIT"

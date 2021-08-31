@@ -25,11 +25,13 @@ module.exports = (env, options) => {
       app: './frontend/src/index.js'
     },
     output: {
-      path: path.resolve(__dirname, 'build'),
+      path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
-      filename: () => build ? `wf-school-map-utility.${version}.[contenthash].js` : '[name].bundle.js',
+      filename: `wf-school-map-utility.${version}.js`,
       library: 'wfSchoolMap',
-      libraryTarget: 'var'
+      libraryTarget: 'umd',
+      globalObject: 'this',
+      umdNamedDefine: true
     },
     devServer: {
       host: 'localhost',
@@ -105,7 +107,7 @@ module.exports = (env, options) => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'frontend', 'public', 'index.ejs'),
         inject: true,
-        filename: path.join(__dirname, 'build', `index.${version}.html`),
+        filename: path.join(__dirname, 'dist', `index.${version}.html`),
       })
     ],
     optimization: {

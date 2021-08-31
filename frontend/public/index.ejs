@@ -10,7 +10,7 @@
 <div id="overlord">
     <div id="root"></div>
     <% for (index in htmlWebpackPlugin.files.js) { %>
-        <script async src="<%= htmlWebpackPlugin.files.js[index] %>" onload="wfSchoolMap.render()"></script>
+        <script async src="<%= htmlWebpackPlugin.files.js[index] %>" onload="window.wfSchoolMap.render()"></script>
     <% } %>
 </div>
 </body>
