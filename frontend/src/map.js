@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef, useMemo, createRef } from "react"
 import ReactMapGL, { LinearInterpolator } from "react-map-gl"
 
 import SchoolMarker from "./marker"
@@ -6,14 +6,16 @@ import useSchools from "./api/schools"
 
 const Map = () => {
   const [viewport, setViewport] = useState({
-    width: "100vw",
-    height: "100vh",
+    width: "100%",
+    height: "100%",
     latitude: 35.383,
     longitude: -90.583,
     zoom: 3.3,
   })
 
   const [schools, setSchools] = useState([])
+
+  const schoolRefs = useRef([])
 
   const [rawSchoolData, rawSchoolDataLoading, rawSchoolDataError] = useSchools()
 
@@ -48,17 +50,22 @@ const Map = () => {
     }
   }
 
-  // Might be a good idea to useMemo this
+  // Might be a good idea to useMemo here, but I'm not sure how to retain access to ref...
+  // const markers = useMemo(() => {
   const markers = schools.map((school) => {
-    return (
-      <SchoolMarker
-        key={school.id}
-        ref={React.createRef()}
-        school={school}
-        onMarkerClick={onMarkerClick}
-      />
-    )
+    {
+      return (
+        <SchoolMarker
+          key={school.id}
+          // ref={(ref) => {schoolRefs.current.push(ref)}}
+          ref={createRef()}
+          school={school}
+          onMarkerClick={onMarkerClick}
+        />
+      )
+    }
   })
+  // }, [schools, schoolRefs])
 
   return (
     <ReactMapGL

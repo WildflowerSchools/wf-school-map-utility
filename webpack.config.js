@@ -27,7 +27,7 @@ module.exports = (env, options) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/',
-      filename: `wf-school-map-utility.${version}.js`,
+      filename: `wf-school-map-utility.js`,
       library: 'wfSchoolMap',
       libraryTarget: 'umd',
       globalObject: 'this',
@@ -39,7 +39,7 @@ module.exports = (env, options) => {
       open: false,
       https: https,
       historyApiFallback: {
-        index: `/index.${version}.html`
+        index: `/index.html`
       },
       static: path.resolve(__dirname, 'frontend', 'public')
     },
@@ -77,21 +77,24 @@ module.exports = (env, options) => {
             'css-loader'
           ]
         },
+        // {
+        //   test: /\.svg$/,
+        //   include: /frontend/,
+        //   use: [
+        //     {
+        //       loader: 'svg-url-loader',
+        //       options: {
+        //         limit: 10000,
+        //       },
+        //     },
+        //   ],
+        // },
         {
           test: /\.svg$/,
-          include: /frontend/,
-          use: [
-            {
-              loader: 'svg-url-loader',
-              options: {
-                limit: 10000,
-              },
-            },
+          include: [
+            path.resolve(__dirname, './frontend/public'),
+            path.resolve(__dirname, './node_modules/bootstrap-icons/icons')
           ],
-        },
-        {
-          test: /\.svg$/,
-          include: path.resolve(__dirname, './node_modules/bootstrap-icons/icons'),
           use: ['@svgr/webpack'],
         }
       ]
@@ -107,7 +110,7 @@ module.exports = (env, options) => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'frontend', 'public', 'index.ejs'),
         inject: true,
-        filename: path.join(__dirname, 'dist', `index.${version}.html`),
+        filename: path.join(__dirname, 'dist', `index.html`),
       })
     ],
     optimization: {

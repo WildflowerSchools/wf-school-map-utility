@@ -1,7 +1,7 @@
 {
-  "name": "wf-school-map-utility",
-  "version": "0.0.1",
-  "description": "google map JS widget for Wildflower Schools",
+  "name": "@wildflowerschools/wf-school-map-utility",
+  "version": "0.0.8",
+  "description": "Google map JS widget for Wildflower Schools",
   "private": false,
   "main": "dist/wf-school-map-utility.js",
   "homepage": "https://github.com/WildflowerSchools/wf-school-map-utility",

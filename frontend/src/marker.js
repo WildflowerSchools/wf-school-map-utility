@@ -1,6 +1,7 @@
-import React, { useEffect, useImperativeHandle, useState } from "react"
-import SeedlingIcon from "../public/seedling-flower_icon.svg"
+import React, { useImperativeHandle, useState } from "react"
 import { Marker } from "react-map-gl"
+
+import SeedlingIcon from "../public/seedling-flower_icon.svg"
 import SchoolPopup from "./popup"
 
 const SchoolMarker = React.forwardRef((props, ref) => {
@@ -27,11 +28,7 @@ const SchoolMarker = React.forwardRef((props, ref) => {
         offsetLeft={-25}
         offsetTop={-48}
       >
-        <img
-          src={SeedlingIcon}
-          alt="School Marker"
-          onClick={handleMarkerClick}
-        />
+        <SeedlingIcon alt="School Marker" onClick={handleMarkerClick} />
       </Marker>
       <SchoolPopup
         school={school}

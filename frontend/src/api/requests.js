@@ -1,4 +1,4 @@
-export const BASE_URL = `http://${process.env.WF_SCHOOL_MAP_API}`
+export const BASE_URL = `${process.env.WF_SCHOOL_MAP_API}`
 
 const createUrl = (base, path) => `${base}${path}`
 
