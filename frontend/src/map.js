@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useMemo, createRef } from "react"
 import ReactMapGL, { LinearInterpolator } from "react-map-gl"
 
+import Cluster from "./cluster"
+import ClusterMarker from "./clusterMarker"
 import SchoolMarker from "./marker"
 import useSchools from "./api/schools"
 
@@ -15,6 +17,7 @@ const Map = () => {
 
   const [schools, setSchools] = useState([])
 
+  const mapRef = useRef(null)
   const schoolRefs = useRef([])
 
   const [rawSchoolData, rawSchoolDataLoading, rawSchoolDataError] = useSchools()
@@ -39,15 +42,33 @@ const Map = () => {
           transitionDuration: 1000,
           transitionInterpolator: new LinearInterpolator(),
         })
+      } else if (marker.ref.current) {
+        marker.ref.current.togglePopup(false)
       }
     }
 
     // Close all popups except for the marker that was just clicked
-    for (const marker of markers) {
-      if (marker.key !== markerKey && marker.ref.current) {
-        marker.ref.current.togglePopup(false)
-      }
-    }
+    // for (const marker of markers) {
+    //   if (marker.key !== markerKey && marker.ref.current) {
+    //     marker.ref.current.togglePopup(false)
+    //   }
+    // }
+  }
+
+  const onClusterMarkerClick = (coordinates) => {
+    const zoom = viewport.zoom + 4
+    setViewport({
+      ...viewport,
+      longitude: coordinates[0],
+      latitude: coordinates[1],
+      zoom: zoom > 10 ? 10 : zoom,
+      transitionDuration: 1000,
+      transitionInterpolator: new LinearInterpolator(),
+    })
+  }
+
+  const onViewportChange = (nextViewport) => {
+    setViewport(nextViewport)
   }
 
   // Might be a good idea to useMemo here, but I'm not sure how to retain access to ref...
@@ -57,7 +78,8 @@ const Map = () => {
       return (
         <SchoolMarker
           key={school.id}
-          // ref={(ref) => {schoolRefs.current.push(ref)}}
+          longitude={school.longitude}
+          latitude={school.latitude}
           ref={createRef()}
           school={school}
           onMarkerClick={onMarkerClick}
@@ -70,13 +92,29 @@ const Map = () => {
   return (
     <ReactMapGL
       {...viewport}
+      ref={mapRef}
       mapboxApiAccessToken={process.env.MAPBOX_ACCESS_TOKEN}
       mapStyle={"mapbox://styles/wfbtalberg/ckst2ao5l3rqc18o40k727tvi"}
-      onViewportChange={(nextViewport) => {
-        setViewport(nextViewport)
-      }}
+      onViewportChange={onViewportChange}
     >
-      {markers}
+      {mapRef.current && (
+        <Cluster
+          map={mapRef.current.getMap()}
+          radius={20}
+          extent={512}
+          nodeSize={40}
+          maxZoom={8}
+          element={(clusterProps) => (
+            <ClusterMarker
+              onMarkerClick={onClusterMarkerClick}
+              onViewportChange={onViewportChange}
+              {...clusterProps}
+            />
+          )}
+        >
+          {markers}
+        </Cluster>
+      )}
     </ReactMapGL>
   )
 }

@@ -18,6 +18,22 @@
   }
 }
 
+.cluster-marker {
+  background-color: $wf-teal;;
+  margin: auto;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  outline: rgba(0, 209, 196, 0.8) solid 6px;
+  div {
+    text-align: center;
+    span {
+      line-height: 40px;
+      color: white;
+    }
+  }
+}
+
 .marker-popup {
   z-index: 5000;
   .mapboxgl-popup-tip {

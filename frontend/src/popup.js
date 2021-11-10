@@ -28,6 +28,7 @@ const SchoolPopup = (props) => {
           onClose={togglePopup}
           anchor="bottom"
           offsetTop={-45}
+          dynamicPosition={true}
         >
           <>
             <Container style={{ minWidth: "375px" }}>

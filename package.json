@@ -1,20 +1,26 @@
 {
   "name": "@wildflowerschools/wf-school-map-utility",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Google map JS widget for Wildflower Schools",
   "private": false,
   "main": "dist/wf-school-map-utility.js",
   "homepage": "https://github.com/WildflowerSchools/wf-school-map-utility",
-  "files": ["dist/*.js", "dist/**/&.js"],
+  "files": [
+    "dist/*.js",
+    "dist/**/&.js"
+  ],
   "dependencies": {
-    "axios": "^0.21.1",
-    "axios-hooks": "^2.6.3",
+    "@turf/helpers": "^6.5.0",
+    "axios": "^0.24.0",
+    "axios-hooks": "^3.0.0",
     "bootstrap": "^5.1.0",
     "bootstrap-icons": "^1.5.0",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
-    "react-bootstrap": "^1.6.1",
+    "react-bootstrap": "^2.0.2",
     "react-dom": "^17.0.2",
-    "react-map-gl": "^6.1.16"
+    "react-map-gl": "^6.1.16",
+    "supercluster": "^7.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

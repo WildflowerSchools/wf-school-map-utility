@@ -5,7 +5,7 @@ import SeedlingIcon from "../public/seedling-flower_icon.svg"
 import SchoolPopup from "./popup"
 
 const SchoolMarker = React.forwardRef((props, ref) => {
-  const { school, onMarkerClick } = props
+  const { school, onMarkerClick, latitude, longitude } = props
 
   const [showPopup, togglePopup] = useState(false)
 
