@@ -27,7 +27,7 @@ const SchoolPopup = (props) => {
           closeOnClick={false}
           onClose={togglePopup}
           anchor="bottom"
-          offsetTop={-45}
+          offsetTop={-40}
           dynamicPosition={true}
         >
           <>

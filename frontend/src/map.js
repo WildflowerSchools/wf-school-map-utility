@@ -115,6 +115,19 @@ const Map = () => {
           {markers}
         </Cluster>
       )}
+      <div
+        style={{
+          right: 0,
+          bottom: 0,
+          position: "absolute",
+          fontSize: "10px",
+          background: "white",
+        }}
+      >
+        <a href="https://www.freepik.com/vectors/watercolor">
+          Watercolor vector created by freepik - www.freepik.com
+        </a>
+      </div>
     </ReactMapGL>
   )
 }
